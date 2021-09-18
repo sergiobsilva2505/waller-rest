@@ -1,5 +1,7 @@
 package br.com.sbs.walllet.transacao;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import java.math.BigDecimal;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
@@ -10,18 +12,23 @@ public class Transacao {
     private BigDecimal preco;
     private Integer quantidade;
     private String ticker;
+
     private TipoTransacao tipoTransacao;
 
     public Transacao() {
 
     }
 
-    public Transacao(LocalDate data, BigDecimal preco, Integer quantidade, String ticker, TipoTransacao tipoTransacao) {
-        this.data = data;
+    public Transacao(BigDecimal preco, Integer quantidade, String ticker, TipoTransacao tipoTransacao) {
         this.preco = preco;
         this.quantidade = quantidade;
         this.ticker = ticker;
         this.tipoTransacao = tipoTransacao;
+    }
+
+    public Transacao(LocalDate data, BigDecimal preco, Integer quantidade, String ticker, TipoTransacao tipoTransacao) {
+        this(preco, quantidade, ticker, tipoTransacao);
+        this.data = data;
     }
 
     public String getTicker() {
