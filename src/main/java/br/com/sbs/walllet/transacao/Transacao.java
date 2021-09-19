@@ -1,18 +1,26 @@
 package br.com.sbs.walllet.transacao;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
+import lombok.*;
 
+import javax.persistence.*;
 import java.math.BigDecimal;
 import java.time.LocalDate;
-import java.time.format.DateTimeFormatter;
 
+@Getter
+@ToString
+@Entity
+@Table(name = "transacoes")
 public class Transacao {
 
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
     private LocalDate data;
     private BigDecimal preco;
     private Integer quantidade;
     private String ticker;
 
+    @Enumerated(EnumType.STRING)
     private TipoTransacao tipoTransacao;
 
     public Transacao() {
@@ -31,34 +39,4 @@ public class Transacao {
         this.data = data;
     }
 
-    public String getTicker() {
-        return ticker;
-    }
-
-    public BigDecimal getPreco() {
-        return preco;
-    }
-
-    public Integer getQuantidade() {
-        return quantidade;
-    }
-
-    public LocalDate getData() {
-        return data;
-    }
-
-    public TipoTransacao getTipoTransacao() {
-        return tipoTransacao;
-    }
-
-    @Override
-    public String toString() {
-        return "Transacao -> [" +
-                "ticker='" + ticker + '\'' +
-                ", preco=" + preco +
-                ", quantidade=" + quantidade +
-                ", data=" + data.format(DateTimeFormatter.ofPattern("dd/MM/yyyy")) +
-                ", tipoTransacao=" + tipoTransacao +
-                ']';
-    }
 }

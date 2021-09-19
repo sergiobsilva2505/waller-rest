@@ -1,26 +1,24 @@
 package br.com.sbs.walllet.transacao;
 
-import com.fasterxml.jackson.annotation.JsonProperty;
+import lombok.Getter;
 
+import javax.validation.constraints.*;
 import java.math.BigDecimal;
 import java.time.LocalDate;
-import java.util.List;
 
+@Getter
 public class NewTransacaoForm {
 
-    @JsonProperty("data")
+    @PastOrPresent
     private LocalDate data;
-
-    @JsonProperty("preco")
+    @NotNull
     private BigDecimal preco;
-
-    @JsonProperty("quantidade")
+    @NotNull
     private Integer quantidade;
-
-    @JsonProperty("ticker")
+    @NotBlank
+    @Size(min = 5, max = 6)
     private String ticker;
-
-    @JsonProperty("tipoTransacao")
+    @NotNull
     private TipoTransacao tipoTransacao;
 
     @Deprecated
