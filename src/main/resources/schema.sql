@@ -7,3 +7,10 @@ CREATE TABLE IF NOT EXISTS transacoes (
     ticker VARCHAR(255),
     tipo_transacao VARCHAR(255)
 );
+
+CREATE TABLE  IF NOT EXISTS usuarios (
+    id BIGINT PRIMARY KEY AUTO_INCREMENT,
+    nome VARCHAR(50),
+    login VARCHAR(30),
+    senha VARCHAR(30)
+);
