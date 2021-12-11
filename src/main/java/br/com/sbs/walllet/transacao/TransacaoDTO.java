@@ -32,4 +32,8 @@ public class TransacaoDTO {
         return transacaos.stream().map(TransacaoDTO::new).toList();
     }
 
+    public static TransacaoDTO fromEntity(Transacao transacao){
+        return new TransacaoDTO(transacao);
+    }
+
 }

@@ -12,22 +12,23 @@ import java.util.List;
 @RequestMapping("/transacoes")
 public class TransacaoController {
 
-    private TransacaoRepository transacaoRepository;
 
-    public TransacaoController(TransacaoRepository transacaoRepository) {
-        this.transacaoRepository = transacaoRepository;
+    private TransacaoService transacaoService;
+
+    public TransacaoController( TransacaoService transacaoService) {
+        this.transacaoService = transacaoService;
     }
 
     @GetMapping
     public ResponseEntity<List<TransacaoDTO>> list() {
-        List<Transacao> transacoes = transacaoRepository.findAll();
+        List<Transacao> transacoes = transacaoService.findAll();
         return ResponseEntity.ok().body(TransacaoDTO.fromEntity(transacoes));
     }
 
     @PostMapping
-    public ResponseEntity<Void> cadastrar(@RequestBody @Valid NewTransacaoForm transacaoForm) {
+    public ResponseEntity<Void> save(@RequestBody @Valid NewTransacaoForm transacaoForm) {
         Transacao transacao = transacaoForm.toEntity();
-        transacaoRepository.save(transacao);
+        transacaoService.save(transacao);
         URI uri = ServletUriComponentsBuilder.fromCurrentContextPath().path("/{id}").buildAndExpand(transacao.getId()).toUri();
         return ResponseEntity.created(uri).build();
     }
