@@ -2,9 +2,11 @@ package br.com.sbs.walllet.transacao;
 
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
 import javax.validation.Valid;
-import java.util.*;
+import java.net.URI;
+import java.util.List;
 
 @RestController
 @RequestMapping("/transacoes")
@@ -23,8 +25,10 @@ public class TransacaoController {
     }
 
     @PostMapping
-    public void cadastrar(@RequestBody @Valid NewTransacaoForm transacaoForm) {
+    public ResponseEntity<Void> cadastrar(@RequestBody @Valid NewTransacaoForm transacaoForm) {
         Transacao transacao = transacaoForm.toEntity();
         transacaoRepository.save(transacao);
+        URI uri = ServletUriComponentsBuilder.fromCurrentContextPath().path("/{id}").buildAndExpand(transacao.getId()).toUri();
+        return ResponseEntity.created(uri).build();
     }
 }
