@@ -7,7 +7,7 @@ import java.util.List;
 @Service
 public class TransacaoService {
 
-    private TransacaoRepository transacaoRepository;
+    private final TransacaoRepository transacaoRepository;
 
     public TransacaoService(TransacaoRepository transacaoRepository) {
         this.transacaoRepository = transacaoRepository;

@@ -6,7 +6,6 @@ import java.math.BigDecimal;
 import java.time.LocalDate;
 import java.util.List;
 
-
 @Getter
 public class TransacaoDTO {
 
@@ -30,10 +29,6 @@ public class TransacaoDTO {
 
     public static List<TransacaoDTO> fromEntity(List<Transacao> transacaos) {
         return transacaos.stream().map(TransacaoDTO::new).toList();
-    }
-
-    public static TransacaoDTO fromEntity(Transacao transacao){
-        return new TransacaoDTO(transacao);
     }
 
 }

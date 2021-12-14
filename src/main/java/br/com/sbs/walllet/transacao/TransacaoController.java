@@ -12,8 +12,7 @@ import java.util.List;
 @RequestMapping("/transacoes")
 public class TransacaoController {
 
-
-    private TransacaoService transacaoService;
+    private final TransacaoService transacaoService;
 
     public TransacaoController( TransacaoService transacaoService) {
         this.transacaoService = transacaoService;
@@ -29,7 +28,7 @@ public class TransacaoController {
     public ResponseEntity<Void> save(@RequestBody @Valid NewTransacaoForm transacaoForm) {
         Transacao transacao = transacaoForm.toEntity();
         transacaoService.save(transacao);
-        URI uri = ServletUriComponentsBuilder.fromCurrentContextPath().path("/{id}").buildAndExpand(transacao.getId()).toUri();
+        URI uri = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}").buildAndExpand(transacao.getId()).toUri();
         return ResponseEntity.created(uri).build();
     }
 }

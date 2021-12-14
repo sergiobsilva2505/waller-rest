@@ -23,9 +23,8 @@ public class Transacao {
     @Enumerated(EnumType.STRING)
     private TipoTransacao tipoTransacao;
 
-    public Transacao() {
-
-    }
+    @Deprecated
+    public Transacao() {    }
 
     public Transacao(BigDecimal preco, Integer quantidade, String ticker, TipoTransacao tipoTransacao) {
         this.preco = preco;
