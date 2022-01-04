@@ -7,7 +7,7 @@ import org.springframework.web.bind.annotation.*;
 public class HelloWorldController {
 
     @GetMapping("/")
-    public ResponseEntity<HelloWorld> hello(){
-        return ResponseEntity.ok().body(new HelloWorld());
+    public ResponseEntity<Message> hello(){
+        return ResponseEntity.ok().body(new Message());
     }
 }

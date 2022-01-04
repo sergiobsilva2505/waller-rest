@@ -1,6 +1,8 @@
 package br.com.sbs.walllet.transacao;
 
-import lombok.*;
+import br.com.sbs.walllet.usuario.Usuario;
+import lombok.Getter;
+import lombok.ToString;
 
 import javax.persistence.*;
 import java.math.BigDecimal;
@@ -23,18 +25,23 @@ public class Transacao {
     @Enumerated(EnumType.STRING)
     private TipoTransacao tipoTransacao;
 
+    @ManyToOne
+    @JoinColumn(name = "usuario_id")
+    private Usuario usuario;
+
     @Deprecated
     public Transacao() {    }
 
-    public Transacao(BigDecimal preco, Integer quantidade, String ticker, TipoTransacao tipoTransacao) {
+    public Transacao(BigDecimal preco, Integer quantidade, String ticker, TipoTransacao tipoTransacao, Usuario usuario) {
         this.preco = preco;
         this.quantidade = quantidade;
         this.ticker = ticker;
         this.tipoTransacao = tipoTransacao;
+        this.usuario = usuario;
     }
 
-    public Transacao(LocalDate data, BigDecimal preco, Integer quantidade, String ticker, TipoTransacao tipoTransacao) {
-        this(preco, quantidade, ticker, tipoTransacao);
+    public Transacao(LocalDate data, BigDecimal preco, Integer quantidade, String ticker, TipoTransacao tipoTransacao, Usuario usuario) {
+        this(preco, quantidade, ticker, tipoTransacao, usuario);
         this.data = data;
     }
 

@@ -14,6 +14,7 @@ public class TransacaoDTO {
     private Integer quantidade;
     private String ticker;
     private TipoTransacao tipoTransacao;
+    private Long usuario_id;
 
     @Deprecated
     public TransacaoDTO() {
@@ -25,10 +26,11 @@ public class TransacaoDTO {
         this.quantidade = transacao.getQuantidade();
         this.ticker = transacao.getTicker();
         this.tipoTransacao = transacao.getTipoTransacao();
+        this.usuario_id = transacao.getUsuario().getId();
     }
 
-    public static List<TransacaoDTO> fromEntity(List<Transacao> transacaos) {
-        return transacaos.stream().map(TransacaoDTO::new).toList();
+    public static List<TransacaoDTO> fromEntity(List<Transacao> transacoes) {
+        return transacoes.stream().map(TransacaoDTO::new).toList();
     }
 
 }

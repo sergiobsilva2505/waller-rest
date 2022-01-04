@@ -1,5 +1,6 @@
 package br.com.sbs.walllet.transacao;
 
+import br.com.sbs.walllet.usuario.Usuario;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -19,7 +20,10 @@ public class TransacaoService {
     }
 
     public Transacao save(Transacao transacao) {
-        Transacao novaTransacao = transacaoRepository.save(transacao);
-        return novaTransacao;
+       return transacaoRepository.save(transacao);
+    }
+
+    public Transacao toEntity(NewTransacaoForm transacaoForm, Usuario usuario) {
+        return new Transacao(transacaoForm.data(), transacaoForm.preco(), transacaoForm.quantidade(), transacaoForm.ticker(), transacaoForm.tipoTransacao(), usuario);
     }
 }

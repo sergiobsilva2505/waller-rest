@@ -28,8 +28,8 @@ public class UsuarioController {
     public ResponseEntity<Void> cadastrar(@RequestBody @Valid NewUsuarioForm newUsuarioForm) {
         Usuario usuario = newUsuarioForm.toEntity();
         usuarioService.save(usuario);
-        URI uri = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}").buildAndExpand(usuario.getId()).toUri();
 
+        URI uri = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}").buildAndExpand(usuario.getId()).toUri();
         return ResponseEntity.created(uri).build();
     }
 }
